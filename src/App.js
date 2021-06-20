@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Counter from "./container/etc/Counter";
+import InputSample from "./container/etc/InputSample";
 
 function App() {
-  return <Counter />;
+  return <InputSample />;
 }
 
 export default App;
