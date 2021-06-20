@@ -1,35 +1,8 @@
 import React, { useState } from "react";
-import { createGlobalStyle } from "styled-components";
-import PrTodoHead from "./container/pr_todo/PrTodoHead";
-import PrTodoInput from "./container/pr_todo/PrTodoInput";
-import PrTodoList from "./container/pr_todo/PrTodoList";
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    background: #e9ecef;
-  }
-`;
-
-const initalTodos = [
-  {
-    id: 1,
-    text: "hi",
-    done: true,
-  },
-  {
-    id: 2,
-    text: "hi2222",
-    done: false,
-  },
-  {
-    id: 3,
-    text: "hi2333",
-    done: true,
-  },
-];
+import Counter from "./container/etc/Counter";
 
 function App() {
-  return <div>test</div>;
+  return <Counter />;
 }
 
 export default App;
