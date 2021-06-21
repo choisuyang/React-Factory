@@ -26,18 +26,25 @@ function App() {
       id: 1,
       username: "one",
       email: "one@test.com",
+      active: true,
     },
     {
       id: 2,
       username: "two",
       email: "two@test.com",
+      active: false,
     },
     {
       id: 3,
       username: "three",
       email: "three@test.com",
+      active: false,
     },
   ]);
+
+  const onToggle = (id) => {
+    setUsers(users.map((user) => (user.id === id ? { ...user, active: !user.active } : user)));
+  };
 
   const nextId = useRef(4);
   const onCreate = () => {
@@ -62,7 +69,7 @@ function App() {
   return (
     <>
       <CreateUser onChange={onChange} username={username} email={email} onCreate={onCreate} />
-      <UserList users={users} onRemove={onRemove} />
+      <UserList users={users} onRemove={onRemove} onToggle={onToggle} />
     </>
   );
 }
