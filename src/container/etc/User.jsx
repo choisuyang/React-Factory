@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function User({ user, onRemove, onToggle }) {
+function User({ user, onRemove, onToggle }) {
   const { username, email, id, active } = user;
 
   return (
@@ -20,3 +20,5 @@ export default function User({ user, onRemove, onToggle }) {
     </div>
   );
 }
+
+export default React.memo(User);

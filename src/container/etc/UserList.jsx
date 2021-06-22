@@ -1,7 +1,7 @@
 import React from "react";
 import User from "./User";
 
-export default function UserList({ users, onRemove, onToggle }) {
+function UserList({ users, onRemove, onToggle }) {
   return (
     <div>
       {users.map((user) => (
@@ -10,3 +10,5 @@ export default function UserList({ users, onRemove, onToggle }) {
     </div>
   );
 }
+
+export default React.memo(UserList);
