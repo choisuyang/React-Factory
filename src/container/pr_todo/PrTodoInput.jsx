@@ -1,15 +1,6 @@
 import React, { useState } from "react";
 
-export default function PrTodoInput({ inputValue }) {
-  const [comments, setComments] = useState("");
-
-  const onChange = (event) => {
-    const { name, value } = event.target;
-    setComments({
-      value,
-    });
-    onChange(comments);
-  };
+export default function PrTodoInput({ text, onChange, onCreate }) {
   return (
     <div
       style={{
@@ -18,8 +9,8 @@ export default function PrTodoInput({ inputValue }) {
         flexDirection: "row",
       }}
     >
-      <input placeholder="입력하세요" value={inputValue} type="input" onChange={onChange} />
-      <button>추가</button>
+      <input type="text" placeholder="입력하세요" value={text} type="input" onChange={onChange} />
+      <button onClick={onCreate}>추가</button>
     </div>
   );
 }

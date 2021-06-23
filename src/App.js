@@ -1,74 +1,62 @@
-import React, { useState } from "react";
-import styled, { css, ThemeProvider } from "styled-components";
-import Button from "./components/Button";
-import Dialog from "./components/Dialog";
+import React, { useState, useRef, useMemo, useCallback } from "react";
+import Counter from "./container/etc/Counter";
+import InputSample from "./container/etc/InputSample";
+import UserList from "./container/etc/UserList";
+import CreateUser from "./container/etc/CreateUser";
+import styled from "styled-components";
+import PrTodoTemplate from "./container/pr_todo/PrTodoTemplate";
+import PrTodoHead from "./container/pr_todo/PrTodoHead";
+import PrTodoList from "./container/pr_todo/PrTodoList";
+import PrTodoInput from "./container/pr_todo/PrTodoInput";
+import Node from "./container/pr_todo/Node";
 
-// const Circle = styled.div`
-//   width: 5rem;
-//   height: 5rem;
-//   background: ${(props) => props.color};
-//   border-radius: 50%;
-//   ${(props) =>
-//     props.huge &&
-//     css`
-//       width: 10rem;
-//       height: 10rem;
-//     `}
-// `;
+function App() {
+  const [todos, setTodos] = useState([
+    {
+      id: 1,
+      message: "one",
+      done: true,
+    },
+    {
+      id: 2,
+      message: "two",
+      done: true,
+    },
+    {
+      id: 3,
+      message: "three",
+      done: false,
+    },
+  ]);
+  const [input, setInput] = useState("sdf");
 
-const AppBlock = styled.div`
-  width: 512px;
-  margin: 0 auto;
-  margin-top: 4rem;
-  border: 1px solid black;
-  padding: 1rem;
-`;
-
-const palette = {
-  blue: "#228be6",
-  gray: "#496057",
-  pink: "#f06595",
-};
-
-const ButtonGroup = styled.div`
-  & + & {
-    margin-top: 1rem;
-  }
-`;
-
-export default function App() {
-  const [dialog, setDialog] = useState(false);
-  const onClick = () => {
-    setDialog(true);
+  const handleSubmit = (e, todos, setTodos, input, setInput) => {
+    e.preventDefault();
+    const id = todos.length ? todos[todos.length - 1].id + 1 : 0;
+    setTodos([...todos, { id: id, message: input }]);
+    setInput("");
   };
 
-  const onConfirm = () => {
-    setDialog(false);
-  };
-
-  const onCancel = () => {
-    setDialog(false);
+  const deleteNote = (id, todos, setTodos) => {
+    setTodos(todos.filter((todo) => todo.id != id));
   };
 
   return (
-    <ThemeProvider theme={{ palette }}>
-      <>
-        <AppBlock>
-          <Button color="pink" size="large" onClick={onClick}>
-            삭제
-          </Button>
-        </AppBlock>
-        <Dialog
-          title="정말 삭제하시겠습니까"
-          confirmText="삭제"
-          cancelText="취소"
-          visible={dialog}
-          onConfirm={onConfirm}
-          onCancel={onCancel}
-        >
-          데이터를 정말로 삭제하시겠습니까
-        </Dialog>
-      </>
-    </ThemeProvider>
+    <div>
+      <form onSubmit={(e) => handleSubmit(e, todos, setTodos, input, setInput)}>
+        <input onChange={(e) => setInput(e.target.value)} value={input} />
+        <button>Submit</button>
+      </form>
+      {todos.map((todo) => (
+        <Node message={todo.message} id={todo.id} deleteNote={(id) => deleteNote(id, todos, setTodos)} />
+      ))}
+    </div>
+    // <PrTodoTemplate>
+    //   <PrTodoHead />
+    //   <PrTodoList todos={todos} />
+    //   <PrTodoInput text={text} onChange={onChange} onCreate={onCreate} />
+    // </PrTodoTemplate>
   );
 }
+
+export default App;
