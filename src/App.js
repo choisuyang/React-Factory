@@ -41,22 +41,7 @@ function App() {
     setTodos(todos.filter((todo) => todo.id != id));
   };
 
-  return (
-    <div>
-      <form onSubmit={(e) => handleSubmit(e, todos, setTodos, input, setInput)}>
-        <input onChange={(e) => setInput(e.target.value)} value={input} />
-        <button>Submit</button>
-      </form>
-      {todos.map((todo) => (
-        <Node message={todo.message} id={todo.id} deleteNote={(id) => deleteNote(id, todos, setTodos)} />
-      ))}
-    </div>
-    // <PrTodoTemplate>
-    //   <PrTodoHead />
-    //   <PrTodoList todos={todos} />
-    //   <PrTodoInput text={text} onChange={onChange} onCreate={onCreate} />
-    // </PrTodoTemplate>
-  );
+  return <div>finish</div>;
 }
 
 export default App;
