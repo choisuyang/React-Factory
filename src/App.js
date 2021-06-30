@@ -11,37 +11,7 @@ import PrTodoInput from "./container/pr_todo/PrTodoInput";
 import Node from "./container/pr_todo/Node";
 
 function App() {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      message: "one",
-      done: true,
-    },
-    {
-      id: 2,
-      message: "two",
-      done: true,
-    },
-    {
-      id: 3,
-      message: "three",
-      done: false,
-    },
-  ]);
-  const [input, setInput] = useState("sdf");
-
-  const handleSubmit = (e, todos, setTodos, input, setInput) => {
-    e.preventDefault();
-    const id = todos.length ? todos[todos.length - 1].id + 1 : 0;
-    setTodos([...todos, { id: id, message: input }]);
-    setInput("");
-  };
-
-  const deleteNote = (id, todos, setTodos) => {
-    setTodos(todos.filter((todo) => todo.id != id));
-  };
-
-  return <div>finish</div>;
+  return <Counter />;
 }
 
 export default App;
