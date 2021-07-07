@@ -11,6 +11,17 @@ function reducer(state, action) {
   }
 }
 
+/*
+function reducer(상태, 상태 값) {
+  switch(상태 값) {
+    case 상태:
+      반환 => 상태 + 1;
+    case 상태:
+      반환 => 상태 + 1;
+  }
+} 
+*/
+
 export default function Counter() {
   const [number, dispatch] = useReducer(reducer, 0);
 
@@ -26,7 +37,6 @@ export default function Counter() {
     });
   };
 
-  console.log("000>", number);
   return (
     <div>
       <h1>{number}</h1>
