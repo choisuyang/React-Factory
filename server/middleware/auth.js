@@ -5,6 +5,7 @@ let auth = (req, res, next) => {
   // 토큰 복호화후 유저찾기
   // 유저가 있으면 인증 ok,
   // 유저가 없으면 인증 no
+  console.log("--->{Auth req", req.cookies);
 
   let token = req.cookies.x_auth;
   console.log("token", token);
